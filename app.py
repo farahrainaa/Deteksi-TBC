@@ -87,7 +87,7 @@ if uploaded_file is not None:
     img = np.array(img_pil) / 255.0
     img_uint8 = (img * 255).astype(np.uint8)
 
-    st.image(img_pil, caption="Gambar Input", use_column_width=True)
+    st.image(img_pil, caption="Gambar Input", use_container_width=True)
 
     mask_lesi = segmentasi_lesi_tbc(img_uint8)
     hog_feat = extract_hog(mask_lesi / 255.0)
@@ -97,4 +97,4 @@ if uploaded_file is not None:
 
     if prediksi == 'TBC':
         img_highlight = highlight_lesi(img_uint8, mask_lesi)
-        st.image(img_highlight, caption="Highlight Area Lesi", use_column_width=True)
+        st.image(img_highlight, caption="Highlight Area Lesi", use_container_width=True)
