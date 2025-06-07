@@ -53,8 +53,9 @@ def extract_hog(image, cell_size=8, bins=9):
 def highlight_lesi(img, mask):
     rgb = np.stack([img]*3, axis=-1)
     overlay = rgb.copy()
-    overlay[mask > 0] = [0, 0, 255]
-    return cv2.addWeighted(rgb, 0.5, overlay, 0.5, 0)
+    overlay[mask > 0] = [255, 0, 0]  # BIRU dalam format BGR
+    highlighted = cv2.addWeighted(rgb, 0.5, overlay, 0.5, 0)
+    return cv2.cvtColor(highlighted, cv2.COLOR_BGR2RGB)  # Konversi ke RGB agar tampil biru di Streamlit
 
 # Fungsi Euclidean distance
 def euclidean_distance(a, b):
